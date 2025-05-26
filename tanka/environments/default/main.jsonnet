@@ -9,7 +9,7 @@ local port = k.core.v1.containerPort;
   whoami: {
     deployment: deploy.new(
       name=name,
-      replicas=3,
+      replicas=4,
       containers=[
         container.new(name, image='traefik/whoami:latest') + 
         container.withPorts( [ port.newNamed(80, name)])
