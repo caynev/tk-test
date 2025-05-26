@@ -13,6 +13,11 @@ local port = k.core.v1.containerPort;
       containers=[
         container.new(name, image='traefik/whoami:latest') + 
         container.withPorts( [ port.newNamed(80, name)])
+        + container.securityContext.withAllowPrivilegeEscalation(false)
+        + container.securityContext.seccompProfile.withType('RuntimeDefault')
+        + container.securityContext.withRunAsNonRoot(true)
+        + container.securityContext.capabilities.withDrop(['ALL'])
+
       ], 
     ),
 
